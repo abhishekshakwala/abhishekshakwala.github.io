@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <link rel="icon" href="icon.jpg" type="image/jpg" sizes="16x16">
+    <title>Travel Door</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <style>
+        .w3-tangerine {
+        font-family: "Tangerine", serif;
+        }
+        #top-header {
+            position: absolute;
+            left: 0%;
+            top: 50;
+        }
+        #searchbox {
+            position:absolute; 
+            left: 530px;
+            display:inline-block;
+            z-index:10
+        }
+
+        div.transbox {
+  
+  margin-left: 500px;
+  margin-right: 500px;
+  background-color: #fdb5b5;
+  border: 1px none black;
+  opacity: 0.8;
+  padding: 20px;
+  padding-left: 70px;
+  padding-right: 70px;
+  filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+
+div.transbox1 {
+  margin-left: 500px;
+  margin-right: 500px;
+  background-color: #8792f3;
+  border: 1px none black;
+  opacity: 0.8;
+  padding: 10px;
+  filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+
+div.transbox3 {
+  margin-left: 500px;
+  margin-right: 500px;
+  background-color: #fdb5b5;
+  border: 1px none black;
+  opacity: 0.8;
+  filter: alpha(opacity=80); /* For IE8 and earlier */
+  }
+
+div.transbox2 form{
+  margin: 30px;
+  background-color: #8792f3;
+  border: 1px none black;
+  opacity: 0.8;
+  padding: 10px;
+  padding-left: 70px;
+  padding-right: 70px;
+  filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+
+div.transbox {
+  font-weight: bold;
+  color: #000000;
+}
+
+        input[type=text], select, textarea {
+    width: 100%; /* Full width */
+    padding: 12px; /* Some padding */  
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+    }
+
+    input[type=button] {
+    background-color: rgb(190, 25, 25);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=button]:hover {
+    background-color: #45a049;
+}
+
+        /* Center the loader */
+        #loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+
+#myDiv2 {
+  display: block;
+  text-align: center;
+}
+    </style>
+    <script type="text/javascript" src="cookies.js"></script>
+    <script type="text/javascript">
+        var data={
+            "fields" : [{
+                "mode_of_travel" : "Select Mode of Travel",
+                "Airplane" : "Select Trip Type",
+                "Bus" : "Select Trip Type",
+                "Train" : "Select Trip Type",
+                "One-Way" : "Select the Country",
+                "Roundtrip" : "Select the Country",
+                "Multi-city" : "Select the Country",
+                "Singletrip" : "Select the City",
+                "Returntrip" : "Select the City",
+                "India" : "Select the City",
+                "Australia" : "Select the City",
+                "US" : "Select the City",
+                "Canada" : "Select the City"
+                }],
+                "mode_of_travel" : [ "Airplane", "Bus", "Train"],
+                "Airplane" : ["One-Way","Roundtrip", "Multi-city"],
+                "Bus" : ["Singletrip","Returntrip"],
+                "Train" : ["Singletrip","Returntrip"],
+                "One-Way" : ["India","Australia","US","Canada"],
+                "Roundtrip" : ["India","Australia","US","Canada"],
+                "Multi-city" : ["India","Australia","US","Canada"],
+                "Singletrip" : ["New York","Rochester","Cincinnati","Boston","Buffalo"],
+                "Returntrip" : ["New York","Rochester","Cincinnati","Boston","Buffalo"],
+                "India" : ["Mumbai","Delhi","Bangalore","Hyderabad"],
+                "Australia" : ["Perth","Sydney","Melbourne"],
+                "US" : ["New York","Chicago","San Francisco","Florida","Phoenix"],
+                "Canada" : ["Toronto","Vancouver","Winnipeg"]
+        }
+
+        function createDynamicSelect(previousSelect){
+            var formDiv = document.getElementById("queryForm");
+            var formElement;
+            var previousValue;
+            var previousIndex;
+            var idCheck;
+            
+            if(typeof(previousSelect)=="string"){
+                getLocalStorageCookie();
+                formElement = document.createElement("form");
+                formElement.name = "queryForm";
+                formElement.id = "searchbox";
+                formElement.method = "POST";
+                previousValue = previousSelect;
+                previousIndex = 0;
+                idCheck = "id"+previousIndex;
+                document.getElementById("header").setAttribute("class","transbox1");
+                document.getElementById("header2").setAttribute("class","transbox3");
+                document.getElementById("previousVisit").setAttribute("class","transbox");
+                document.getElementById("queryForm").setAttribute("class","transbox2");
+            } else {
+                formElement = document.getElementById("searchbox");
+                previousValue = previousSelect.value;
+                idCheck = previousSelect.id;
+                previousIndex = idCheck.match(/\d+/)[0];
+            }
+
+            console.log("Current ID: "+idCheck);
+            console.log(previousValue + " " + data.fields[0][previousValue]);
+            previousIndex++;                             //Becomes NEXT INDEX
+            var checkNextElement = document.getElementById("id"+previousIndex);
+            if(data.fields[0][previousValue] != undefined && checkNextElement === null){
+                var select = document.createElement("select");
+                var defaultoption = document.createElement("option");
+                var brElement1 = document.createElement('br');
+                var brElement2 = document.createElement('br');
+                select.id = "id" + (previousIndex);
+                defaultoption.innerText = data.fields[0][previousValue];
+                defaultoption.disabled = true;
+                defaultoption.selected = true;
+                select.appendChild(defaultoption);
+                for(var i = 0; i < data[previousValue].length; i++){
+                    var option = document.createElement("option");
+                    option.value = data[previousValue][i];
+                    option.innerText = data[previousValue][i];
+                    select.appendChild(option);
+                }
+                formElement.appendChild(select);
+                formElement.appendChild(brElement1);
+                formElement.appendChild(brElement2);
+                formDiv.appendChild(formElement);
+                
+                if(select.addEventListener){
+                    select.setAttribute("onChange","createDynamicSelect(this);");
+                } else {
+                    select.onchange = function(){createDynamicSelect(this);};
+                    //select.setAttribute("onChange",function(){createDynamicSelect(this);});
+                }
+                
+                //IE7       IMPORTANT!!!!!!!!!!
+                //firstselect.setAttribute("onChange",function(){createDynamicSelect(this);});
+                //firstselect.addEventListener("change", createDynamicSelect, false);
+            } else if(data.fields[0][previousValue] != undefined && checkNextElement != null){
+                removeSelectElement(idCheck, previousIndex-1);
+            } else {
+                createFormElements();
+                setLocalStorageCookie();
+                formElement.action = "landingPage.html";
+                formElement.submit();
+            }
+        }
+        
+        function findIndex(array, currentID) {
+	        for(var i=0; i<array.length; i++) {
+		        if(array[i] == currentID) break;
+	        }
+	        return array[i] == currentID ? i : -1;
+        }
+
+        function removeSelectElement(currentID, previousIndex){
+            console.log(currentID + ": " + previousIndex);
+            var currentElement = document.getElementById(currentID);
+            var selects = document.getElementsByTagName("select");
+            var selectID = [];
+            var index;
+            for(var i=0; i<selects.length; i++){
+                selectID[i] = selects[i].id;
+            }
+            if(currentElement.addEventListener){
+                index = selectID.indexOf(currentID);
+            } else {
+                index = findIndex(selectID,currentID);
+            }
+            
+            var count = 0;
+            for(var i=index+1; i<selectID.length; i++){
+                var remove = document.getElementById(selectID[i]);
+                remove.parentNode.removeChild(remove);
+                count++;
+            }
+            var removeBR = document.getElementsByTagName("br");
+            var brLength = removeBR.length;
+            var removeCount = 0;
+            while(removeCount<=(count*2)-1){
+                var node = removeBR[brLength-1];
+                node.parentNode.removeChild(node);
+                brLength = removeBR.length;
+                removeCount++;
+            }
+            createDynamicSelect(currentElement);
+        }
+
+        function createFormElements(){
+            console.log("Hi");
+        }
+
+        function getLocalStorageCookie(){
+            var username;
+            var userTravelDetailsKey;
+            var detailsArray;
+            var array;
+            var pTag = document.createElement("p");
+            var br;
+            
+            if(localStorage && sessionStorage.getItem("user")){
+                username = sessionStorage.getItem("user");
+                userTravelDetailsKey = username + "_TD";
+                array = localStorage.getItem(username).split(",");
+                if(localStorage.getItem(userTravelDetailsKey)){
+                    detailsArray = localStorage.getItem(userTravelDetailsKey).split(",");
+                    document.getElementById("previousVisit").innerText = "Hey, " + array[0] 
+                    + " your Travel summary from last visit on " + array[4] + " :";
+                    br = document.createElement("br");
+                    document.getElementById("previousVisit").appendChild(br);
+                    var travelMSG = detailsArray[3] ? (detailsArray[3] + ", " + detailsArray[2] + ".") : (detailsArray[2] + ".");
+                    pTag.innerText = "You decided to travel by " + detailsArray[0] + ". Trip Type was " + detailsArray[1] + " from Rochester to " + travelMSG;
+                    document.getElementById("previousVisit").appendChild(pTag);
+                } else {
+                    document.getElementById("previousVisit").innerText = "Hey, " + localStorage.getItem(username).split(",")[0]
+                    + " we are helping you for the first time!";
+                }
+            } else {
+                //deal with IE7 as cookies....
+                /*
+                var user = getCookie("user");
+                var msg = 'Welcome, ' + user;
+                pTag.innerText = msg;
+                document.getElementById("previousVisit").appendChild(pTag);
+                */
+                var user = GetCookie("user");
+                var msg = 'Welcome, ' + user;
+                pTag.innerText = msg;
+                document.getElementById("previousVisit").appendChild(pTag);
+            }
+        }
+        
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var dc = decodedCookie.split(';');
+            for(var i = 0; i < dc.length; i++) {
+                var c = dc[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function setLocalStorageCookie(){
+            var username;
+            var userTravelDetailsKey;
+            var userTravelArray = [];
+            var selectElements;
+            if(localStorage && sessionStorage.getItem("user")){
+                username = sessionStorage.getItem("user");
+                userTravelDetailsKey = username + "_TD";
+                selectElements = document.getElementsByTagName("select");
+                for(var i=0; i<selectElements.length; i++){
+                    var selectValue = selectElements[i].value;
+                    userTravelArray.push(selectValue);
+                }
+                localStorage.setItem(userTravelDetailsKey,userTravelArray);
+            } else {
+                //deal with IE7 as cookies....
+                selectElements = document.getElementsByTagName("select");
+                for(var i=0; i<selectElements.length; i++){
+                    var selectValue = selectElements[i].value;
+                    userTravelArray.push(selectValue);
+                }
+                /*
+                var departure = "Rochester, NY, US";
+                var arrival = userTravelArray[3] ? (userTravelArray[3] + ", " + userTravelArray[2]) : (userTravelArray[2]);
+                document.cookie = "departure" + "=" + departure + ";arrival=" + arrival + ";path=/";
+                */
+                var user = GetCookie("user");
+                userTravelDetailsKey = user + "_TD";
+                SetCookie(userTravelDetailsKey,userTravelArray);
+            }
+        }
+        
+        var myVar;
+
+        function myNewPage(){
+            myVar = setTimeout(showPageContent, 1500);
+            createDynamicSelect('mode_of_travel');
+        }
+
+        function showPageContent(){
+            var image = document.createElement("img");
+            image.setAttribute("src","travel.jpg");
+            document.getElementsByTagName("body")[0].appendChild(image);
+            if(image.addEventListener){
+                document.getElementById("loader").style.display = "none";
+                document.getElementById("myDiv").style.display = "block";
+            }
+        }
+    </script>
+</head>
+    <body onload="myNewPage();">
+        <!--[if !(IE)]><!--><div id="loader"></div><!--<![endif]-->
+        <!--[if lte IE 8]><div id="myDiv2" align="center"><![endif]-->
+        <!--[if gte IE 9]><div id="myDiv" align="center" style="display:none;" class="animate-bottom"><![endif]-->
+        <!--[if !(IE)]><!--><div id="myDiv" align="center" style="display:none;" class="animate-bottom"><!--<![endif]-->
+        <div id="header" class="w3-tangerine"><h1 class="w3-xxxlarge"><font color="red">TRAVEL </font><font color="blue">DOOR </font></h1></div>
+        <div id="header2" class="w3-tangerine"><h2>SAVE BIG! FIND CHEAP TICKETS</h2></div><br>
+        <div id="previousVisit"></div><br>
+            <div id="queryForm">
+            </div>
+        </div>
+    </body>
+</html>

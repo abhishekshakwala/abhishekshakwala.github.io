@@ -1,0 +1,95 @@
+<html>
+<script type="text/javascript">
+function init(){
+    var x = document.createElement("section");
+    x.setAttribute("class","blue");
+    //x.setAttribute("id","fred");
+    x.id = "fred";
+    x.onclick = doIt;
+    x.setAttribute("onmouseout","doIt()");
+    
+    x.appendChild(document.createTextNode("hi there, new"));
+
+    //put it out
+
+    //at the end
+    //parent.appendChild(ele);
+    //document.getElementsByTagName("body")[0].appendChild(x);
+
+    //parent.insertBefore(ele, which child of parent to go in front of);
+
+    $("1").insertBefore(x, $("2"));
+
+    $("1").insertBefore(x, $("1").firstChild);
+
+    $("1").insertBefore(x, $("3"));
+
+    //parent.removeChild(childOfParentToKill);
+    $("1").removeChild($("2"));
+
+    $("1").removeChild($("1").firstChild);
+
+    //parent.replaceChild(ele,childOfParentToReplace);
+    $("1").replaceChild(x,$("2"));
+
+    //target.cloneNode(true);
+    var hold = $("1").cloneNode(true);
+}
+    
+function $(id){
+    return document.getElementById(id);
+}
+
+dom.event = thingToDo;
+
+ele.onclick = doIt;
+
+ele.onmouseout = function(){
+    this
+    doThat(arg);
+    alert("thing");
+}
+
+//DOM.addEventListener("click",doIt); 3rd parameter as true/false
+//addEventListener - MUST BE ON THE PAGE
+
+//ACCESSORS
+
+document.getElementById()
+document.getElementsByTagName()
+document.getElementsByClassName()
+document.getElementsByName()
+
+for(var i=0, len<document.getElementsByTagName("p").length; i < len; i++){
+    document.getElementsByTagName("p")[i].onmouseover = function(){
+        this.style.color = "blue";
+    }
+    document.getElementsByTagName("p")[i].onmouseout = function(){
+        this.style.color = "red";
+    }
+}
+
+//STORAGE
+localStorage.getItem()
+localStorage.setItem()
+localStorage.clear()
+localStorage.removeItem()
+localStorage.length
+
+//DHTML
+DOM.style.marginLeft = "75px";
+//1. style 2. camelCase 3. String 4. units
+
+//EVERYTHING IS A STRING IN JAVASCRIPT
+
+//sticking somewer the elements
+//How do i get the text node and change it
+</script>
+<body>
+    <p onclick="thing();"></p>
+    <form action="page.php" method="get" onsubmit="return val();">
+        <input type="text" name="fname"/>
+        <input type="submit" value="click me" />    //No actions on the submit button
+    </form>
+</body>
+</html>

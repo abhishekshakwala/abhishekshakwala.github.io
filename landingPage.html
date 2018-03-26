@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <link rel="icon" href="icon.jpg" type="image/jpg" sizes="16x16">
+    <title>Travel Door</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+        .mySlides {
+            display:none;
+        }
+
+        .w3-tangerine {
+            font-family: "Tangerine", serif;
+        }
+            #top-header {
+                position: absolute;
+                left: 0%;
+                top: 50;
+            }
+            #searchbox {
+                position:absolute; 
+                left: 650px;
+                display:inline-block;
+                z-index:10
+            }
+            div.transbox {
+  
+  margin-left: 500px;
+  margin-right: 500px;
+  background-color: #fdb5b5;
+  border: 1px none black;
+  opacity: 0.8;
+  padding: 20px;
+  padding-left: 70px;
+  padding-right: 70px;
+  filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+
+div.transbox1 {
+  margin-left: 500px;
+  margin-right: 500px;
+  background-color: #fdb5b5;
+  
+  border: 1px none black;
+  opacity: 0.8;
+  padding: 5px;
+  filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+
+div.transbox3 {
+  margin-left: 500px;
+  margin-right: 500px;
+  background-color: #8792f3;
+  border: 1px none black;
+  opacity: 0.8;
+  filter: alpha(opacity=80); /* For IE8 and earlier */
+  }
+
+  input[type=text], select, textarea {
+    width: 100%; /* Full width */
+    padding: 12px; /* Some padding */  
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=button] {
+    background-color: rgb(190, 25, 25);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=button]:hover {
+    background-color: #45a049;
+}
+            /* Center the loader */
+            #loader {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 1;
+      width: 150px;
+      height: 150px;
+      margin: -75px 0 0 -75px;
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid #3498db;
+      width: 120px;
+      height: 120px;
+      -webkit-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+    }
+    
+    @-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Add animation to "page content" */
+    .animate-bottom {
+      position: relative;
+      -webkit-animation-name: animatebottom;
+      -webkit-animation-duration: 1s;
+      animation-name: animatebottom;
+      animation-duration: 1s
+    }
+    
+    @-webkit-keyframes animatebottom {
+      from { bottom:-100px; opacity:0 } 
+      to { bottom:0px; opacity:1 }
+    }
+    
+    @keyframes animatebottom { 
+      from{ bottom:-100px; opacity:0 } 
+      to{ bottom:0; opacity:1 }
+    }
+    
+    #myDiv {
+      display: none;
+      text-align: center;
+    }
+    </style>
+    <script type="text/javascript" src="cookies.js"></script>
+    <script type="text/javascript">
+        var myVar;
+
+    function moveIt(){
+        var imgObj = document.getElementById("travelBy");
+        
+        if(parseInt(imgObj.style.left)<625){
+            imgObj.style.left = parseInt(imgObj.style.left) + 2 + 'px';
+            setTimeout(function(){moveIt();},5);
+        }
+    }
+
+    var ind = 0;
+
+    function slideImage() {
+        var i;
+        var img = document.getElementsByClassName("mySlides");
+        for (i = 0; i < img.length; i++) {
+            img[i].style.display = "none";  
+        }
+        ind++;
+        if(ind > img.length){
+            ind = 1;
+        }    
+        img[ind-1].style.display = "block";  
+        setTimeout(slideImage, 1000);
+    }
+
+    function showImage(imagePlace){
+        var slideHeader = document.getElementById("sliderHeader");
+        var imageSlider = document.getElementById("imageSlider");
+        slideHeader.innerText = "Your Travel begins here...";
+        var imageArray = [imagePlace+"1.jpg", imagePlace+"2.jpg", imagePlace+"3.jpg", imagePlace+"4.jpg"];
+        for(var i=0; i<imageArray.length; i++){
+            var image = document.createElement("img");
+            image.setAttribute("src", imageArray[i]);
+            image.setAttribute("class", "mySlides");
+            imageSlider.appendChild(image);
+        }
+        slideImage();
+    }
+
+    function doDHTML(username){
+        var userTravelDetailsKey = username + "_TD";
+        var name;
+            if(localStorage){
+                var array = localStorage.getItem(username).split(",");
+                var detailsArray = localStorage.getItem(userTravelDetailsKey).split(",");
+                var travelArrival = detailsArray[3] ? (detailsArray[3] + ", " + detailsArray[2]) : (detailsArray[2] + ", US");
+                var departureNode = document.createElement("label");
+                departureNode.innerText = "Rochester, NY, US";
+                departureNode.style.paddingLeft = "200px";
+                var arrivalNode = document.createElement("label");
+                arrivalNode.innerText = travelArrival;
+                arrivalNode.style.paddingLeft = "650px";
+                var travelDiv = document.getElementById("travelPlan");
+                travelDiv.appendChild(departureNode);
+                var imageName = detailsArray[0];
+                var img = document.createElement("img");
+                img.id = "travelBy";
+                img.src = imageName + ".png";
+                img.style.left = "20px";
+                img.style.position = "relative";
+                travelDiv.appendChild(img);
+                travelDiv.appendChild(arrivalNode);
+                if(!detailsArray[3]){
+                    name = "US";
+                } else {
+                    name = detailsArray[2];
+                }
+                showImage(name);
+            } else {
+                //deal with IE7 as cookies....
+                var user = GetCookie("user");
+                userTravelDetailsKey = user + "_TD";
+                var userDetails = GetCookie(userTravelDetailsKey);
+                userDetails = userDetails.split(",");
+                var travelArrival = userDetails[3] ? (userDetails[3] + ", " + userDetails[2]) : (userDetails[2]);
+                var departureNode = document.createElement("label");
+                departureNode.innerText = "Rochester, NY, US";
+                departureNode.style.paddingLeft = "200px";
+                var arrivalNode = document.createElement("label");
+                arrivalNode.innerText = travelArrival;
+                arrivalNode.style.paddingLeft = "650px";
+                var travelDiv = document.getElementById("travelPlan");
+                travelDiv.appendChild(departureNode);
+                var imageName = userDetails[0];
+                var img = document.createElement("img");
+                img.id = "travelBy";
+                img.src = imageName + ".png";
+                img.style.left = "20px";
+                img.style.position = "relative";
+                travelDiv.appendChild(img);
+                travelDiv.appendChild(arrivalNode);
+                if(!detailsArray[3]){
+                    name = "US";
+                } else {
+                    name = detailsArray[2];
+                }
+                showImage(name);
+            }
+    }
+
+    function getLocalStorageCookie(){
+            var username;
+            var userTravelDetailsKey;
+            var pTag1 = document.createElement("p");
+            var pTag2 = document.createElement("p");
+            var pTag3 = document.createElement("p");
+            var pTag4 = document.createElement("p");
+            var br = document.createElement("br");
+            var bookButton = document.createElement("input");
+            bookButton.id = "bookButton";
+            bookButton.type = "button";
+            bookButton.value = "Book Travel";
+            bookButton.onclick = moveIt;
+            if(localStorage && sessionStorage.getItem("user")){
+                username = sessionStorage.getItem("user");
+                userTravelDetailsKey = username + "_TD";
+                var array = localStorage.getItem(username).split(",");
+                var detailsArray = localStorage.getItem(userTravelDetailsKey).split(",");
+                if(localStorage.getItem(userTravelDetailsKey)){
+                    document.getElementById("previousVisit").innerText = "Hey, " + array[0] 
+                    + " your Travel Door summary is here!";
+
+                    document.getElementById("previousVisit").appendChild(br);
+                    var travelMSG = detailsArray[3] ? (detailsArray[3] + ", " + detailsArray[2]) : (detailsArray[2]);
+                    //pTag1.textContent = "Travel Details: ";
+                    pTag2.innerText = "Travel By:" + detailsArray[0];
+                    pTag3.innerText = "Travel From: Rochester, NY, US";
+                    pTag4.innerText = "Travel To: " + travelMSG; 
+                    //document.getElementById("previousVisit").appendChild(pTag1);
+                    document.getElementById("previousVisit").appendChild(pTag2);
+                    document.getElementById("previousVisit").appendChild(pTag3);
+                    document.getElementById("previousVisit").appendChild(pTag4);
+                    document.getElementById("previousVisit").appendChild(bookButton);
+                    document.getElementById("header").setAttribute("class","transbox1");
+                    document.getElementById("header2").setAttribute("class","transbox3");
+                    document.getElementById("previousVisit").setAttribute("class","transbox1");
+                    doDHTML(username);
+                }
+            } else {
+                //deal with IE7 as cookies....
+                var user = GetCookie("user");
+                userTravelDetailsKey = user + "_TD";
+                var userDetails = GetCookie(userTravelDetailsKey);
+                userDetails = userDetails.split(",");
+                var travelMSG = userDetails[3] ? (userDetails[3] + ", " + userDetails[2]) : (userDetails[2]);
+                pTag2.innerText = "Travel By:" + userDetails[0];
+                pTag3.innerText = "Travel From: Rochester, NY, US";
+                pTag4.innerText = "Travel To: " + travelMSG; 
+                document.getElementById("previousVisit").appendChild(pTag2);
+                document.getElementById("previousVisit").appendChild(pTag3);
+                document.getElementById("previousVisit").appendChild(pTag4);
+                document.getElementById("previousVisit").appendChild(bookButton);
+                document.getElementById("header").setAttribute("class","transbox1");
+                document.getElementById("header2").setAttribute("class","transbox3");
+                document.getElementById("previousVisit").setAttribute("class","transbox1");
+                doDHTML(user);
+            }
+    }
+
+    function myNewPage(){
+        myVar = setTimeout(showPageContent, 1500);
+        getLocalStorageCookie();
+    }
+
+    function showPageContent(){
+        /*
+        var image = document.createElement("img");
+        image.setAttribute("src","travel.jpg");
+        document.getElementsByTagName("body")[0].appendChild(image);
+        */
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("myDiv").style.display = "block";
+        document.getElementById("travelPlan").style.display = "block";
+        document.getElementById("sliderHeader").style.display = "block";
+        document.getElementById("imageSlider").style.display = "block";
+    }
+    </script>
+</head>
+<body onload="myNewPage()">
+    <div id="loader"></div>
+    <div id="myDiv" align="center" style="display:none;" class="animate-bottom">
+            <div id="header" class="w3-tangerine"><h1 class="w3-xxxlarge"><font color="red">TRAVEL </font><font color="blue">DOOR </font></h1></div>
+            <div id="header2" class="w3-tangerine"><h2 class="w3-xxlarge">RESERVATION DETAILS</h2></div>
+            <div id="previousVisit"></div><br>
+    </div><br><br>
+    <div id="travelPlan" style="display:none;" class="animate-bottom"></div>
+    <h2 id="sliderHeader" class="w3-center" style="display:none;"></h2>
+    <div id="imageSlider" class="w3-content w3-section" align="center" class="animate-bottom" style="width:500px;height:600px;display:none;"></div>
+</body>
+</html>

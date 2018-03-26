@@ -1,0 +1,159 @@
+{
+"mode_of_commute" : {
+  "0" : "Airplane",
+  "1" : "Bus",
+  "2" : "Train"
+},
+"trip_type" : {
+  "0" : "One-Way",
+  "1" : "Roundtrip",
+  "2" : "Multi-city"
+},
+"from_places" : {
+  "0" : "New York",
+  "1" : "Chicago",
+  "2" : "San Francisco",
+  "3" : "Florida"
+},
+"to_places" : {
+  "0" : "New York",
+  "1" : "Chicago",
+  "2" : "San Francisco",
+  "3" : "Florida"
+},
+"passenger_details" : {
+  "0" : "Adults", 
+  "1" : "Seniors", 
+  "2" : "Children"
+},
+"coach_details" : {
+  "0" : "Premium Economy", 
+  "1" : "Business", 
+  "2" : "First"
+}
+}
+//dans idea
+//
+var data={
+"mode_of_commute" : [ "Airplane", "Bus", "Train"],
+"Airplane" : ["One-Way","Roundtrip", "Multi-city"],
+"Bus" : ["Singletrip","Returntrip"],
+"Train" : ["Singletrip","Returntrip"],
+"One-Way" : ["India","Australia","United States","Canada"],
+"Roundtrip" : ["India","Australia","United States","Canada"],
+"Multi-city" : ["India","Australia","United States","Canada"],
+"Singletrip" : ["New York","Rochester","Cincinnati","Boston","Buffalo"],
+"Returntrip" : ["New York","Rochester","Cincinnati","Boston","Buffalo"],
+"India" : ["Mumbai","Delhi","Bangalore","Hyderabad"],
+"Australia" : ["Perth","Sydney","Melbourne"],
+"United States" : ["New York","Chicago","San Francisco","Florida","Phoenix"],
+"Canada" : ["Toronto","Vancouver","Winnipeg"]
+}
+
+
+{
+"fields" : ["mode_of_commute","airplane_option","bus_option","train_option","One-Way_option","Roundtrip_option","Multi-city_option","Singletrip_option","Returntrip_option"]
+
+}
+
+getting elementbyName requires [0]th index why????
+
+
+
+var data={
+            "fields" : [{
+                "mode_of_travel" : "Select Mode of Travel",
+                "Airplane" : "Select Trip Type",
+                "Bus" : "Select Trip Type",
+                "Train" : "Select Trip Type",
+                "One-Way" : "Select the Country",
+                "Roundtrip" : "Select the Country",
+                "Multi-city" : "Select the Country",
+                "Singletrip" : "Select the City",
+                "Returntrip" : "Select the City",
+                "India" : "Select the City",
+                "Australia" : "Select the City",
+                "US" : "Select the City",
+                "Canada" : "Select the City"
+                }],
+                "mode_of_travel" : [ "Airplane", "Bus", "Train"],
+                "Airplane" : ["One-Way","Roundtrip", "Multi-city"],
+                "Bus" : ["Singletrip","Returntrip"],
+                "Train" : ["Singletrip","Returntrip"],
+                "One-Way" : ["India","Australia","US","Canada"],
+                "Roundtrip" : ["India","Australia","US","Canada"],
+                "Multi-city" : ["India","Australia","US","Canada"],
+                "Singletrip" : ["Departure","Arrival"],
+                "Roundtrip" : ["Departure","Arrival"],
+                "Departure" : ["New York","Rochester","Cincinnati","Boston","Buffalo"],
+                "Arrival" : ["New York","Rochester","Cincinnati","Boston","Buffalo"],
+                "India" : ["Mumbai","Delhi","Bangalore","Hyderabad"],
+                "Australia" : ["Perth","Sydney","Melbourne"],
+                "US" : ["New York","Chicago","San Francisco","Florida","Phoenix"],
+                "Canada" : ["Toronto","Vancouver","Winnipeg"]
+        }
+		
+		var data={
+            "fields" : [{
+                "mode_of_travel" : "Select Mode of Travel",
+                "Airplane" : "Select Trip Type",
+                "Bus" : "Select Trip Type",
+                "Train" : "Select Trip Type",
+                "One-Way" : "Select the Country",
+                "Roundtrip" : "Select the trip",
+                "TravelTo" : "Select the Country",
+                "TravelFrom" : "Select the Country",
+                "Multi-city" : "Select the Country",
+                "Singletrip" : "Select the City",
+                "Returntrip" : "Select the trip",
+                "TravelToCity" : "Select the City",
+                "TravelFromCity" : "Select the City",
+                "India" : "Select the City",
+                "Australia" : "Select the City",
+                "US" : "Select the City",
+                "Canada" : "Select the City"
+                }],
+                "mode_of_travel" : [ "Airplane", "Bus", "Train"],
+                "Airplane" : ["One-Way","Roundtrip", "Multi-city"],
+                "Bus" : ["Singletrip","Returntrip"],
+                "Train" : ["Singletrip","Returntrip"],
+                "One-Way" : ["India","Australia","US","Canada"],
+                "Roundtrip" : ["TravelTo", "TravelFrom"],
+                "TravelTo" : ["India","Australia","US","Canada"],
+                "TravelFrom" : ["India","Australia","US","Canada"],
+                "Multi-city" : ["India","Australia","US","Canada"],
+                "Singletrip" : ["New York","Rochester","Cincinnati","Boston","Buffalo"],
+                "Returntrip" : ["TravelToCity", "TravelFromCity"],
+                "TravelToCity" : ["New York","Rochester","Cincinnati","Boston","Buffalo"],
+                "TravelFromCity" : ["New York","Rochester","Cincinnati","Boston","Buffalo"],
+                "India" : ["Mumbai","Delhi","Bangalore","Hyderabad"],
+                "Australia" : ["Perth","Sydney","Melbourne"],
+                "US" : ["New York","Chicago","San Francisco","Florida","Phoenix"],
+                "Canada" : ["Toronto","Vancouver","Winnipeg"]
+        }
+
+		Problem::::: Singletrip: Departure and arrival separate data and fields (same for multi-city)
+		Remove <br> tags
+		
+		on final page change background image according to the image selected
+		
+		what if parameter is not send while calling in javascript?
+		difference between text and textcontent?
+
+
+DHTML
+LocalStorage and Cookies
+Browser Compatibility testing
+run it on local server (xampp)
+browser back and next page handling
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <link rel="icon" href="icon.jpg" type="image/jpg" sizes="16x16">
+    <title>Travel Door</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+    .w3-tangerine {
+        font-family: "Tangerine", serif;
+    }
+    #top-header {
+        position: absolute;
+        left: 0%;
+        top: 50;
+    }
+    #searchbox {
+        position:absolute; 
+        left: 500px;
+        display:inline-block;
+        z-index:10
+    }
+
+    div.transbox1 {
+  
+    background-color: #8792f3;
+    border: 1px none black;
+    opacity: 0.8;
+    padding: 20px;
+    padding-left: 70px;
+    padding-right: 70px;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
+    }
+
+    div.transbox2 {
+  
+  background-color: #8792f3;
+  border: 1px none black;
+  opacity: 0.8;
+  filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+    
+    div.transbox form{
+  margin: 30px;
+  background-color: #fdb5b5;
+  border: 1px none black;
+  opacity: 0.8;
+  padding: 20px;
+  padding-left: 70px;
+  padding-right: 70px;
+  filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+
+div.transbox {
+  font-weight: bold;
+  color: #000000;
+}
+
+    /* Style inputs with type="text", select elements and textareas */
+input[type=text], select, textarea {
+    width: 100%; /* Full width */
+    padding: 12px; /* Some padding */  
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=button] {
+    background-color: rgb(190, 25, 25);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=button]:hover {
+    background-color: #45a049;
+}
+
+/* Add a background color and some padding around the form */
+
+    </style>
+    <script type="text/javascript" src="cookies.js"></script>
+    <script type="text/javascript">
+        // BROWSER CHECKING 
+        if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)){ 
+			var ie = new Number(RegExp.$1);
+			if (ie < 7){
+			    var downloadLink = "http://outdatedbrowser.com/en";
+				window.location = downloadLink;
+			}
+        }
+
+        // FORM CREATION
+        function createForm(){
+           
+            var formElement = document.createElement('form');
+            var hTag = document.createElement('h2');
+            var brElement = document.createElement('br');
+            var brElement2 = document.createElement('br');
+            var brElement3 = document.createElement('br');
+            var brElement4 = document.createElement('br');
+            var brElement5 = document.createElement('br');
+            var brElement6 = document.createElement('br');
+            var brElement7 = document.createElement('br');
+            var brElement8 = document.createElement('br');
+            var createTextInput = document.createElement('input');
+            var createTextInput2 = document.createElement('input');
+            var createTextInput3 = document.createElement('input');
+            var createTextInput4 = document.createElement('input');
+            var firstNameNode = document.createTextNode("First Name:");
+            var lastNameNode = document.createTextNode("Last Name:");
+            var emailNode = document.createTextNode("Email Address:");
+            var phoneNode = document.createTextNode("Phone Number:");
+            var buttonElement = document.createElement("input");
+            document.getElementById("header").setAttribute("class","transbox1");
+            document.getElementById("travelForm").setAttribute("class","transbox");
+            formElement.name = "travelForm";
+            formElement.id = "searchbox";
+            formElement.method = "POST";
+            if(buttonElement.addEventListener){
+                buttonElement.addEventListener("click", setLocalStorageCookie);
+            } else {
+                // FOR IE BROWSER SUPPORT
+                buttonElement.onclick = setLocalStorageCookie;
+            }
+            hTag.textContent = "Personal Information";
+            buttonElement.type = "button";
+            buttonElement.value = "Proceed to Booking";
+            createTextInput.type = "text";
+            createTextInput2.type = "text";
+            createTextInput3.type = "text";
+            createTextInput4.type = "text";
+            createTextInput.name = "firstname";
+            createTextInput.id = "firstname";
+            createTextInput.placeholder = "Your Firstname";
+            createTextInput2.name = "lastname";
+            createTextInput2.id = "lastname";
+            createTextInput2.placeholder = "Your Lastname";
+            createTextInput3.name = "email";
+            createTextInput3.id = "email";
+            createTextInput3.placeholder = "Your Email Address";
+            createTextInput4.name = "phone";
+            createTextInput4.id = "phone";
+            createTextInput4.placeholder = "Your Phone Number";
+            formElement.appendChild(hTag);
+            formElement.appendChild(firstNameNode);
+            formElement.appendChild(createTextInput);
+            formElement.appendChild(brElement);
+            formElement.appendChild(brElement2);
+            formElement.appendChild(lastNameNode);
+            formElement.appendChild(createTextInput2);
+            formElement.appendChild(brElement3);
+            formElement.appendChild(brElement4);
+            formElement.appendChild(emailNode);
+            formElement.appendChild(createTextInput3);
+            formElement.appendChild(brElement5);
+            formElement.appendChild(brElement6);
+            formElement.appendChild(phoneNode);
+            formElement.appendChild(createTextInput4);
+            formElement.appendChild(brElement7);
+            formElement.appendChild(brElement8);
+            formElement.appendChild(buttonElement);
+            document.getElementById('travelForm').appendChild(formElement);
+        }
+
+        // ONSUBMIT FUNCTION
+        function submitForm(){
+            var first = document.getElementById("firstname").value;
+            var last = document.getElementById("lastname").value;
+            if(validate()){
+                alert("Welcome to Travel Door " + first + ", we are happy that you are here!");
+                var form = document.getElementById("searchbox");
+                form.action = "querypage.html";
+                form.submit();
+            } else {
+                alert("Please fill all the details! Form not submitted!");
+                //form.action = "return false;";
+            }
+        }
+        
+        function setLocalStorageCookie(){
+            var firstname = document.getElementById("firstname").value;
+            var lastname = document.getElementById("lastname").value;
+            var email = document.getElementById("email").value;
+            var phone = document.getElementById("phone").value;
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1;
+            var yy = today.getFullYear();
+            var date = mm +'/ '+ dd +'/ ' +yy;
+            var formArray = [firstname, lastname, email, phone, date];
+            var username = firstname+lastname;
+            
+            if(localStorage){
+                sessionStorage.setItem("user",username);
+                localStorage.setItem(username,formArray);
+            } else {
+                //deal with IE7 as cookies....
+                /*
+                var date = new Date();
+                date.setTime(date.getTime() + (30*24*60*60*1000));
+                var expires = "expires=" + date.toGMTString();
+                document.cookie = "user" + "=" + username + ";" + expires + ";path=/";
+                */
+                SetCookie("user",username);
+            }
+            submitForm();
+        }
+
+        // VALIDATION FUNC
+        function validate(){
+            var first = document.getElementById("firstname").value;
+            var last = document.getElementById("lastname").value;
+            var email = document.getElementById("email").value;
+            var phone = document.getElementById("phone").value;
+            if(first === "" || last === "" || email === "" || phone === ""){
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+</head>
+<body onload="createForm();">
+    <div id="siteHeader" align="center">
+        <div id="header" class="w3-tangerine"><h1 class="w3-xxxlarge"><font color="red">TRAVEL </font><font color="blue">DOOR </font>IS HAPPY TO HAVE YOU ONBOARD!</h1></div>
+        <div id="travelForm"></div>
+    </div>
+    <img src="travel.jpg"/>
+</body>
+</html>

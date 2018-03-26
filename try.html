@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style type="text/css">
+        thead {color:green;}
+        tbody {color:blue;}
+        tfoot {color:red;}
+
+        table, th, td {
+          border: 1px solid black;
+        }
+        </style>
+        <script type="text/javascript">
+        function create(){
+          var table = document.createElement("table");
+          var tbody = document.createElement("tbody");
+          var theader = document.createElement("thead");
+          var trHead = document.createElement("tr");
+          var thead1 = document.createElement("th");
+          
+          var thead2 = document.createElement("th");
+          
+          var thead3 = document.createElement("th");
+          
+          var headNode1 = document.createTextNode("First Name");
+          var headNode2 = document.createTextNode("Last Name");
+          var headNode3 = document.createTextNode("Gender");
+          var male = document.createTextNode("Male");
+          var female = document.createTextNode("Female");
+          var trBody1 = document.createElement("tr");
+          var trBody2 = document.createElement("tr");
+          var trBody3 = document.createElement("tr");
+          var trBody4 = document.createElement("tr");
+          table.id="table2";
+          tbody.appendChild(trBody1);
+          tbody.appendChild(trBody2);
+          tbody.appendChild(trBody3);
+          tbody.appendChild(trBody4);
+          trHead.appendChild(thead1);
+          trHead.appendChild(thead2);
+          trHead.appendChild(thead3);
+          theader.appendChild(trHead);
+          table.appendChild(theader);
+          table.appendChild(tbody);
+          var form = document.createElement("form");
+          form.id = "inputTable";
+          form.action="submitted()";
+          form.method = "POST";
+          form.name = "tableFill";
+          var formDiv = $("formDiv");
+          formDiv.appendChild(table);
+          var first = document.createElement("input");
+          first.id = "first";
+          first.name = "first";
+          first.placeholder = "FirstName";
+          var last = document.createElement("input");
+          last.id = "last";
+          last.name = "last";
+          last.placeholder = "LastName";
+          var radioMale = document.createElement("input");
+          radioMale.type = "radio";
+          radioMale.name = "gender";
+          radioMale.value = "Male";
+          var radioFemale = document.createElement("input");
+          radioFemale.type = "radio";
+          radioFemale.name = "gender";
+          radioFemale.value = "Female";
+          var label1 = document.createElement("label");
+          var label2 = document.createElement("label");
+          label1.appendChild(radioMale);
+          label1.appendChild(male);
+          label2.appendChild(radioFemale);
+          label2.appendChild(female);
+          var button = document.createElement("input");
+          button.type = "button";
+          button.value = "submit";
+          button.onclick = submitted;
+          form.appendChild(first);
+          form.appendChild(last);
+          form.appendChild(radioMale);
+          form.appendChild(male);
+          form.appendChild(radioFemale);
+          form.appendChild(female);
+          form.appendChild(button);
+          formDiv.appendChild(form);
+          var getTD = document.getElementsByTagName("td");
+          console.log(getTD[5].firstChild.textContent);
+
+        }
+        
+        function submitted(){
+          var first = document.getElementById("first").value;
+          var last = document.getElementById("last").value;
+          var radio = document.getElementsByName("gender");
+          var selectedGender;
+
+          for(var i = 0; i < radio.length; i++) {
+            if(radio[i].checked)
+              selectedGender = radio[i].value;
+          }
+          console.log(first+last+": "+selectedGender);
+        }
+
+        function $(id){
+          return document.getElementById(id);
+        }
+        </script>
+    </head>
+    <body onload="create();">
+      <table id="table1">
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Savings</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <td>Sum</td>
+            <td>$180</td>
+          </tr>
+        </tfoot>
+        <tbody>
+          <tr>
+            <td>January</td>
+            <td>$100</td>
+          </tr>
+          <tr>
+            <td>February</td>
+            <td>$80</td>
+          </tr>
+        </tbody>
+      </table>
+      <br><br>
+      <div id="formDiv"></div>
+    </body>
+</html>
